@@ -4,7 +4,7 @@ interface ProductCardHandlerProps {
     increaseQnt: () => void
 }
 
-const ProductCardHandlerComponent = ({decreaseQnt, increaseQnt, itemQuantity}: ProductCardHandlerProps) => {
+const ProductQuantityHandlerComponent = ({decreaseQnt, increaseQnt, itemQuantity}: ProductCardHandlerProps) => {
     return(
         <div className='flex items-center bg-gray-100 rounded-lg px-2 py-1 '>
             <button
@@ -26,4 +26,4 @@ const ProductCardHandlerComponent = ({decreaseQnt, increaseQnt, itemQuantity}: P
     )
 }
 
-export default ProductCardHandlerComponent
+export default ProductQuantityHandlerComponent

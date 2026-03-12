@@ -6,6 +6,7 @@ import CartPage from "./pages/CartPage/CartPage.tsx";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.tsx";
 import MainLayout from "./shared/layout/MainLayout.tsx";
 import FavouritesPage from "./pages/FavoritesPage/FavouritesPage.tsx";
+import ProductDetailsPage from "./pages/ProductDetailsPage/ProductDetailsPage.tsx";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/cart' element={<CartPage/>} />
         <Route path='/profile' element={<ProfilePage/>} />
           <Route path='/favorites' element={<FavouritesPage/>} />
+          <Route path='/product/:id' element={<ProductDetailsPage/>} />
       </Route>
 
     </Routes>

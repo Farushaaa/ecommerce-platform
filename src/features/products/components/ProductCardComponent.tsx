@@ -3,8 +3,9 @@ import type { ProductType } from "../types/ProductType.ts";
 import { useCartStore } from "../../cart/store/CartStore.ts";
 import ProductCardImageComponent from "./product-card-image.component.tsx";
 import ProductCardDetailsComponent from "./product-card-details.component.tsx";
-import ProductCardHandlerComponent from "./product-card-handler.component.tsx";
+import ProductQuantityHandlerComponent from "./product-quantity-handler.component.tsx";
 import ProductCardButtonComponent from "./product-card-button.component.tsx";
+import {Link} from "react-router-dom";
 
 interface ProductCardTypes {
     product: ProductType
@@ -33,29 +34,26 @@ const ProductCardComponent = ({ product }: ProductCardTypes) => {
     return (
         <div className='w-full h-auto p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow group cursor-pointer'>
 
-            <ProductCardImageComponent imgUrl={product.image} altName={product.title}/>
-
-            <ProductCardDetailsComponent productTitle={product.title} productPrice={product.price}/>
-
-            <div className='mt-6 flex items-center justify-end gap-4 '>
-
-                <ProductCardHandlerComponent decreaseQnt={decrement} itemQuantity={quantity}
-                                             increaseQnt={increment}/>
-
-                <div className="relative">
-                    <ProductCardButtonComponent product={product} quantity={quantity}
-                                                addToCart={handleItemAdding} isClicked={isClicked}/>
-
-                    {existingCartItem && (
-                        <div className="absolute -top-2 -right-2 bg-red-500
-                        text-white text-[10px] font-bold w-5 h-5 flex items-center
-                         justify-center rounded-full border-2 border-white shadow-sm
-                         animate-in zoom-in duration-300">
-                            {existingCartItem.quantity}
-                        </div>
-                    )}
+            <Link to={`/product/${product.id}`}>
+                <ProductCardImageComponent imgUrl={product.image} altName={product.title}/>
+                <ProductCardDetailsComponent productTitle={product.title} productPrice={product.price}/>
+                <div className='mt-6 flex items-center justify-end gap-4 '>
+                    <ProductQuantityHandlerComponent decreaseQnt={decrement} itemQuantity={quantity}
+                                                     increaseQnt={increment}/>
+                    <div className="relative">
+                        <ProductCardButtonComponent product={product} quantity={quantity}
+                                                    addToCart={handleItemAdding} isClicked={isClicked}/>
+                        {existingCartItem && (
+                            <div className="absolute -top-2 -right-2 bg-red-500
+                            text-white text-[10px] font-bold w-5 h-5 flex items-center
+                             justify-center rounded-full border-2 border-white shadow-sm
+                             animate-in zoom-in duration-300">
+                                {existingCartItem.quantity}
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 };
